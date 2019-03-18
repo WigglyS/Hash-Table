@@ -2,7 +2,7 @@
 
 void main()
 {
-	HashTable<string,int> hashtable;
+	HashTable<string,int> hashtable(5);
 
 	
 	int Quit = 0;
@@ -12,8 +12,8 @@ void main()
 		int input;
 		hashtable.Display();
 		cout << "Press (1) to Add a Name and Number to Table" << endl;
-		cout << "Press (2) to Remove A Entry From the Table" << endl;
-		cout << "Press (3) to Run Diagnostics" << endl;
+		cout << "Press (2) to Run Diagnostics" << endl;
+		cout << "Press (3) to Retrive a value" << endl;
 		cout << "Press (0) to Quit" << endl;
 		cin >> input;
 
@@ -30,24 +30,29 @@ void main()
 				system("CLS");
 			}
 				break;
-			case 2:{
-				string RemoveKey;
-				cout << "Enter a Number to Remove: ";
-				cin >> RemoveKey;
-				hashtable.Delete(RemoveKey);
-				system("CLS");
-			}
-			
-				break;
-			case 3:
+			case 2:
 				system("CLS");
 				//hashtable.Diagnostics();
 				break;
-			case 0:
-				Quit = 1;
+			case 3: {
+				string key;
+				cout << "Enter a key to retrieve from: ";
+				cin >> key;
+				cout << key << " :" << hashtable.Retieve(key) << endl;
+				system("pause");
+				system("CLS");
+
+			}
+				break;
+			case 0: {
+				Quit = 1;	
+			}	
+				break;
+
+			default: {
+
+			}
 				break;
 		}
-
 	} while (Quit == 0);
-	
 }
