@@ -32,13 +32,23 @@ void main()
 				break;
 			case 2:
 				system("CLS");
-				//hashtable.Diagnostics();
+				if (!hashtable.Diagnostics()) {
+
+					cout <<"test Failed" << endl;
+				}
+				else {
+					cout << "test succeded" << endl;
+				}
+					
+				system("pause");
+				system("CLS");
 				break;
 			case 3: {
 				string key;
 				cout << "Enter a key to retrieve from: ";
 				cin >> key;
-				cout << key << " :" << hashtable.Retieve(key) << endl;
+				int returntest = hashtable.Retrieve(key);
+				cout << key << " :" << returntest  << endl;
 				system("pause");
 				system("CLS");
 

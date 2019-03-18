@@ -48,7 +48,7 @@ public:
 	}
 
 	//returns the value of a certain key
-	V Retieve(K key) {
+	V Retrieve(K key) {
 		int index = Hash(key);
 		Node* temp = tablepointer[index];
 
@@ -62,12 +62,7 @@ public:
 		return NULL;
 	}
 
-	int Hash(K key) {
-		// hash % table size
-		hash<K> hasher;
-		return hasher(key) % Size ;
 
-	}
 	void Display() {
 		cout << "Hash Table Contains:" << endl;
 
@@ -87,6 +82,30 @@ public:
 			}
 		}
 	}
+
+	//testing to see if it makes it through diffrent cases without producing an error
+	bool Diagnostics() {
+		try {
+			HashTable<string,int> testtable(1);
+			testtable.Insert("test", 1);
+			if (testtable.Retrieve("test") != 1) {
+				cout << "iserted incorrectly" << endl;
+				return false;
+			}
+			testtable.Insert("test", 2);
+			if (testtable.Retrieve("test") != 2) {
+				cout << "iserted duplicate incorrectly" << endl;
+				return false;
+			}
+			testtable.Retrieve("nottest");
+
+		}
+		catch (...) {
+			cout << "Error occured" << endl;
+			return false;
+		}
+		return true;
+	}
 private:
 	//nested node class to store the key and value together
 	class Node
@@ -100,6 +119,14 @@ private:
 		K key;
 		V value;
 	};
+
+	//the hash is only used inside the hashtable class
+	int Hash(K key) {
+		// hash % table size
+		hash<K> hasher;
+		return hasher(key) % Size;
+
+	}
 
 	//pointer to the array
 	Node** tablepointer;
